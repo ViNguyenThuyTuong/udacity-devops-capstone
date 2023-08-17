@@ -56,6 +56,7 @@ jobs:
             python3 -m venv .devops-capstone
             source .devops-capstone/bin/activate
             make install
+            make eks-create-cluster
       - save_cache:
           paths:
             - ./.devops-capstone
@@ -103,6 +104,7 @@ jobs:
       - run:
           name: Connect to cluster
           command: |
+            echo $AWS_DEFAULT_REGION
             aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME
       - run:
           name: Deploy new version as green
