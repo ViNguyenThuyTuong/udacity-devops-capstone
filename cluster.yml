@@ -5,8 +5,9 @@ metadata:
   name: kubenetes
   region: us-east-1
 
-# iam:
+iam:
 #   withOIDC: true
+  serviceRoleARN: arn:aws:iam::936896248725:role/eks-power-role
 
 nodeGroups:
   - name: capstone
