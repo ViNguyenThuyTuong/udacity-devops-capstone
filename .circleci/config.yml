@@ -58,7 +58,7 @@ jobs:
             python3 -m venv .devops-capstone
             source .devops-capstone/bin/activate
             make install
-            export AWS_EC2_METADATA_DISABLED=true
+            #export AWS_EC2_METADATA_DISABLED=true
             make eks-create-cluster
       - save_cache:
           paths:
