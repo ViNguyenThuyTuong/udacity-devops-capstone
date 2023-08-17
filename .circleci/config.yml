@@ -43,6 +43,7 @@ jobs:
       - image: cimg/python:3.7.13
     steps:
       - checkout
+      - install-aws-iam-authenticator
       # Download and cache dependencies
       # - restore_cache:
       #     keys:
