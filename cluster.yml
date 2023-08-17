@@ -6,7 +6,7 @@ metadata:
   region: us-west-2
 
 iam:
-#   withOIDC: true
+  withOIDC: true
   serviceRoleARN: arn:aws:iam::936896248725:role/eks-power-role
 
 nodeGroups:
