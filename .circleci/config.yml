@@ -58,7 +58,7 @@ jobs:
             source .devops-capstone/bin/activate
             make install
             export AWS_EC2_METADATA_DISABLED=true
-            #make eks-create-cluster
+            make eks-create-cluster
       - save_cache:
           paths:
             - ./.devops-capstone
@@ -113,8 +113,10 @@ jobs:
               chmod +x ./kubectl
               pip3 install awscli --upgrade
               aws --version
-              aws ecr get-login-password --region us-west-2
+              #aws ecr get-login-password --region us-west-2
+              echo "update-kubeconfig start"
               aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME
+              echo "update-kubeconfig complete"
               # aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 207100238581.dkr.ecr.us-east-2.amazonaws.com
               # aws eks update-kubeconfig --name $CLUSTER_NAME
               # LATEST_SHA=$(git rev-parse HEAD)
