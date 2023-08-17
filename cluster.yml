@@ -5,8 +5,8 @@ metadata:
   name: kubenetes
   region: us-east-1
 
-iam:
-  withOIDC: true
+# iam:
+#   withOIDC: true
 
 nodeGroups:
   - name: capstone
