@@ -100,12 +100,29 @@ jobs:
       - checkout
       - install-awscli-gettext
       - install-aws-iam-authenticator
-      - install-kubectl      
+      - install-kubectl
+      - setup_remote_docker:
+          docker_layer_caching: false
+
       - run:
-          name: Connect to cluster
+          name: Deploy to EKS
           command: |
-            echo $AWS_DEFAULT_REGION
-            aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME
+              curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+              chmod +x ./kubectl
+              pip3 install awscli --upgrade
+              aws --version
+              aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME
+              # aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 207100238581.dkr.ecr.us-east-2.amazonaws.com
+              # aws eks update-kubeconfig --name $CLUSTER_NAME
+              # LATEST_SHA=$(git rev-parse HEAD)
+              # docker build -t express-eks:$LATEST_SHA .
+              # docker tag express-eks:$LATEST_SHA 207100238581.dkr.ecr.us-east-2.amazonaws.com/express-eks:$LATEST_SHA
+              # docker push 207100238581.dkr.ecr.us-east-2.amazonaws.com/express-eks:$LATEST_SHA
+              # ./kubectl set image deployment/myapp myapp=207100238581.dkr.ecr.us-east-2.amazonaws.com/express-eks:$LATEST_SHA -n default            :
+          # name: Connect to cluster
+          # command: |
+          #   echo $AWS_DEFAULT_REGION
+          #   aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME
       - run:
           name: Deploy new version as green
           command: |
