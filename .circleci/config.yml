@@ -221,5 +221,5 @@ workflows:
           requires: [deploy-green]
       - deploy-new-blue:
           requires: [smock-test]
-      - clean-old-blue:
-          requires: [deploy-new-blue]
+      #- clean-old-blue:
+       #   requires: [deploy-new-blue]
