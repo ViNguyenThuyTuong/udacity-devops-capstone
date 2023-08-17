@@ -19,4 +19,4 @@ nodeGroups:
     volumeSize: 80
     ssh:
       allow: true
-      publicKeyName: udacity
+      publicKeyName: capstone-keypair
