@@ -113,6 +113,7 @@ jobs:
               chmod +x ./kubectl
               pip3 install awscli --upgrade
               aws --version
+              aws ecr get-login-password --region us-east-1
               aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name test-cluster
               # aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 207100238581.dkr.ecr.us-east-2.amazonaws.com
               # aws eks update-kubeconfig --name $CLUSTER_NAME
@@ -217,10 +218,10 @@ workflows:
   default:
     jobs:
       - setup-install-lint
-      - build-and-push-docker-image:
-          requires: [setup-install-lint]
+      # - build-and-push-docker-image:
+      #     requires: [setup-install-lint]
       - deploy-green:
-          requires: [build-and-push-docker-image]
+          requires: [setup-install-lint]
       - smock-test:
           requires: [deploy-green]
       - deploy-new-blue:
