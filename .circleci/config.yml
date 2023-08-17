@@ -219,7 +219,7 @@ workflows:
     jobs:
       - setup-install-lint
        - build-and-push-docker-image:
-           requires: [setup-install-lint]
+          requires: [setup-install-lint]
       - deploy-green:
           requires: [build-and-push-docker-image]
       - smock-test:
