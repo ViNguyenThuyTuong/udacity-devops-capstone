@@ -46,7 +46,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-{{ checksum "app/requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
@@ -59,7 +59,7 @@ jobs:
       - save_cache:
           paths:
             - ./.devops-capstone
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          key: v1-dependencies-{{ checksum "app/requirements.txt" }}
       - run:
           name: Make lint
           command: |
@@ -79,7 +79,7 @@ jobs:
             export VERSION=$(<app/version.txt)
             
             # Build image
-            docker build --tag udacity-capstone-project .
+            docker build --tag udacity-capstone-project app
             
             # Set image tag
             docker tag udacity-capstone-project ${DOCKER_HUB_ID}/${DOCKER_REPOSITORY}:${VERSION}
