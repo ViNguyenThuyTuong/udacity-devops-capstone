@@ -79,7 +79,7 @@ jobs:
             export VERSION=$(<app/version.txt)
             
             # Build image
-            docker build --tag udacity-capstone-project app
+            docker build --tag udacity-capstone-project .
             
             # Set image tag
             docker tag udacity-capstone-project ${DOCKER_HUB_ID}/${DOCKER_REPOSITORY}:${VERSION}
