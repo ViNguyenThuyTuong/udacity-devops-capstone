@@ -12,5 +12,5 @@ else
     echo
     echo "Creating cluster..."
     chmod +x ./bin/eksctl
-    ./bin/eksctl create cluster --config-file=./cluster.yml --timeout=40m --verbose=4 --profile=udacity
+    ./bin/eksctl create cluster --config-file=./cluster.yml --timeout=40m --verbose=4 #--profile=udacity
 fi
