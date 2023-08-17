@@ -114,7 +114,7 @@ jobs:
               pip3 install awscli --upgrade
               aws --version
               aws ecr get-login-password --region us-west-2
-              aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name test-cluster
+              aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME
               # aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 207100238581.dkr.ecr.us-east-2.amazonaws.com
               # aws eks update-kubeconfig --name $CLUSTER_NAME
               # LATEST_SHA=$(git rev-parse HEAD)
