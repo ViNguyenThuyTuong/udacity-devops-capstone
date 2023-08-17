@@ -44,6 +44,7 @@ jobs:
     steps:
       - checkout
       - install-aws-iam-authenticator
+      - install-kubectl
       # Download and cache dependencies
       # - restore_cache:
       #     keys:
