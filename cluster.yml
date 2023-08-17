@@ -1,9 +1,9 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
-# metadata:
-#   name: kubenetes
-#   region: us-west-2
+metadata:
+  name: kubenetes
+  region: us-east-1
 
 iam:
   withOIDC: true
